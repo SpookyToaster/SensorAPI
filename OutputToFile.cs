@@ -6,7 +6,7 @@
         {
             if (logOutput == null) throw new ArgumentNullException(nameof(logOutput));
 
-            string path = "C:\\Users\\Logan\\OneDrive\\SensorAPI\\log.txt";
+            string path = "C:\\Users\\lburkardt\\Documents\\DATALogger\\log.txt";
             string dir = Path.GetDirectoryName(path);
             
             

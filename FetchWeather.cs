@@ -22,6 +22,12 @@ namespace SensorAPI
             double windspeed = weather.GetProperty("windspeed").GetDouble();
             double weathercode = weather.GetProperty("weathercode").GetDouble();
 
+            DewPointCalc dewPoint = new DewPointCalc(temperature, 50);
+
+            //sanity test
+            //Console.WriteLine($"Dew point is {dewPoint.DewPointCalculator}");
+            
+            
             string[] logOutput =
             {
                     "================================================",
@@ -30,6 +36,7 @@ namespace SensorAPI
                     $"Current Temperature: {temperature}°C",
                     $"Current Windspeed: {windspeed} km/h",
                     $"Current Weathercode: {weathercode}",
+                    $"Current Dew Point: {dewPoint.DewPointCalculator(temperature, 50)} °F",
                     "================================================"
                 };
 
