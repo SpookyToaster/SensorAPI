@@ -26,19 +26,40 @@ namespace SensorAPI
 
             //sanity test
             //Console.WriteLine($"Dew point is {dewPoint.DewPointCalculator}");
-            
-            
+
+            //Revised log output to CSV format for easier parsing and analysis
+            // Current output is in the same column, possibly need to export as a single string with delimiting commas??
+            // If so, pretty lame. I like doing the string.
+            string[] logOutput2 =
+            {
+                    $"{DateTime.Now}",
+                    $"{temperature}",
+                    $"{windspeed}",
+                    $"{weathercode}",
+                    $"{dewPoint.DewPointCalculator(temperature, 50)}",
+                };
+
             string[] logOutput =
             {
-                    "================================================",
-                    "[Open-Meteo API] ",
-                    $"TimeStamp: {DateTime.Now}",
-                    $"Current Temperature: {temperature}°C",
-                    $"Current Windspeed: {windspeed} km/h",
-                    $"Current Weathercode: {weathercode}",
-                    $"Current Dew Point: {dewPoint.DewPointCalculator(temperature, 50)} °F",
-                    "================================================"
-                };
+                $"{DateTime.Now}," +
+                $" {temperature}," +
+                $" {windspeed}," +
+                $" {weathercode}," +
+                $" {dewPoint.DewPointCalculator(temperature, 50)}",
+            };
+
+
+            //string[] logOutput =
+            //{
+            //        "================================================",
+            //        "[Open-Meteo API] ",
+            //        $"TimeStamp: {DateTime.Now}",
+            //        $"Current Temperature: {temperature}°C",
+            //        $"Current Windspeed: {windspeed} km/h",
+            //        $"Current Weathercode: {weathercode}",
+            //        $"Current Dew Point: {dewPoint.DewPointCalculator(temperature, 50)} °F",
+            //        "================================================"
+            //    };
 
             return logOutput;
         }

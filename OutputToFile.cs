@@ -15,6 +15,7 @@
                 Directory.CreateDirectory(dir);
             }
 
+            //TODO APPEND ALL lines is only appending to rows. Need to revise so the intial data is separated into columns, then appended. 
             File.AppendAllLines(path, logOutput);
             Console.WriteLine();
 
