@@ -27,18 +27,6 @@ namespace SensorAPI
             //sanity test
             //Console.WriteLine($"Dew point is {dewPoint.DewPointCalculator}");
 
-            //Revised log output to CSV format for easier parsing and analysis
-            // Current output is in the same column, possibly need to export as a single string with delimiting commas??
-            // If so, pretty lame. I like doing the string.
-            string[] logOutput2 =
-            {
-                    $"{DateTime.Now}",
-                    $"{temperature}",
-                    $"{windspeed}",
-                    $"{weathercode}",
-                    $"{dewPoint.DewPointCalculator(temperature, 50)}",
-                };
-
             string[] logOutput =
             {
                 $"{DateTime.Now}," +
@@ -48,6 +36,10 @@ namespace SensorAPI
                 $" {dewPoint.DewPointCalculator(temperature, 50)}",
             };
 
+            //===========================================================
+            // OBSOLETE BLOCK
+            // SINGLE COLUMN EXPORT ONLY
+            //===========================================================
 
             //string[] logOutput =
             //{
@@ -60,6 +52,20 @@ namespace SensorAPI
             //        $"Current Dew Point: {dewPoint.DewPointCalculator(temperature, 50)} °F",
             //        "================================================"
             //    };
+
+            //===========================================================
+            // OBSOLETE BLOCK
+            // SINGLE COLUMN EXPORT ONLY
+            //===========================================================
+            //string[] logOutput2 =
+            //{
+            //        $"{DateTime.Now}",
+            //        $"{temperature}",
+            //        $"{windspeed}",
+            //        $"{weathercode}",
+            //        $"{dewPoint.DewPointCalculator(temperature, 50)}",
+            //    };
+
 
             return logOutput;
         }
