@@ -15,8 +15,7 @@
                 Directory.CreateDirectory(dir);
             }
 
-            // write using UTF-8 with BOM so consumers (e.g., Excel) detect UTF-8 and display characters like '°' correctly
-            File.AppendAllLines(path, logOutput, new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: true));
+            File.AppendAllLines(path, logOutput);
             Console.WriteLine();
 
             return path;
