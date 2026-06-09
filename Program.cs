@@ -18,7 +18,7 @@
                 try
                 {
                     string[] logOutput = await fetchWeather.FetchWeather(37.12929369843719, -93.45036244045811);
-                    string path = toFile.outPutToFile(logOutput, "txt");
+                    string path = toFile.outPutToFile(logOutput, "csv");
                     foreach (var item in logOutput)
                     {
                         Console.WriteLine(item);

@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace SensorAPI
+﻿namespace SensorAPI
 {
     public class OutputToFile   
     {
@@ -17,10 +15,11 @@ namespace SensorAPI
                 Directory.CreateDirectory(dir);
             }
 
-            File.AppendAllLines(path, logOutput);
+            // write using UTF-8 with BOM so consumers (e.g., Excel) detect UTF-8 and display characters like '°' correctly
+            File.AppendAllLines(path, logOutput, new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: true));
             Console.WriteLine();
 
-            return (string) path;
+            return path;
         }
 
     }
