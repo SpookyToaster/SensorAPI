@@ -18,12 +18,12 @@
                 try
                 {
                     string[] logOutput = await fetchWeather.FetchWeather(37.12929369843719, -93.45036244045811);
-                    toFile.outPutToFile(logOutput, "txt");
+                    string path = toFile.outPutToFile(logOutput, "txt");
                     foreach (var item in logOutput)
                     {
                         Console.WriteLine(item);
                     }
-                    Console.WriteLine($"File Output Path is {OutputToFile.path}");
+                    Console.WriteLine($"File output path is {path}");
                 }
 
                 catch (HttpRequestException ex)
@@ -37,7 +37,7 @@
                 }
 
                 //exit = Console.ReadLine();
-                await Task.Delay(120000);
+                await Task.Delay(5000);
 
             }
             while (exit != "0");

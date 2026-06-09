@@ -4,7 +4,7 @@ namespace SensorAPI
 {
     public class OutputToFile   
     {
-        public void outPutToFile(string[] logOutput, string fileType)
+        public string outPutToFile(string[] logOutput, string fileType)
         {
             if (logOutput == null) throw new ArgumentNullException(nameof(logOutput));
 
@@ -19,6 +19,9 @@ namespace SensorAPI
 
             File.AppendAllLines(path, logOutput);
             Console.WriteLine();
+
+            return (string) path;
         }
+
     }
 }
