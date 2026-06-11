@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using System.IO;
 
 namespace SensorAPI
 {
@@ -12,9 +13,9 @@ namespace SensorAPI
             // Revise to private and add method to update default path? Need to display default path and ask user if that's the correct filepath?
             string path = $"C:\\Users\\lburkardt\\Documents\\DATALogger\\log.{fileType}";
             string dir = Path.GetDirectoryName(path);
-            
-            
-            if (!string.IsNullOrEmpty(dir))
+
+
+            if (!File.Exists(path))
             {
                 string[] headers =
                 {
@@ -32,7 +33,7 @@ namespace SensorAPI
                 File.AppendAllLines(path, headers);
             }
 
-            
+
             File.AppendAllLines(path, logOutput);
             Console.WriteLine();
 
