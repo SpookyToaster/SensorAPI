@@ -37,6 +37,7 @@ namespace SensorAPI
             File.AppendAllLines(path, logOutput);
             Console.WriteLine();
 
+
             return path;
         }
 

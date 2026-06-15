@@ -7,21 +7,24 @@
         {
             string exit = "";
 
-            Console.WriteLine("API Demo Test");
-            Console.WriteLine("TODO: replace with actual API call");
+            //Console.WriteLine("API Demo Test");
+            //Console.WriteLine("TODO: replace with actual API call");
 
             do
             {
-
+                Alert firstAlert = new Alert();
                 OutputToFile toFile = new OutputToFile();
 
                 try
                 {
                     string[] logOutput = await fetchWeather.FetchWeather(37.12929369843719, -93.45036244045811);
                     string path = toFile.outPutToFile(logOutput, "csv");
+
                     foreach (var item in logOutput)
                     {
                         Console.WriteLine(item);
+                        firstAlert.alert(item);
+
                     }
                     Console.WriteLine($"File output path is {path}");
                 }
@@ -35,6 +38,9 @@
                 {
                     Console.WriteLine(ex.Message);
                 }
+
+                //add alert system here
+
 
                 //exit = Console.ReadLine();
                 await Task.Delay(5000);
