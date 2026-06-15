@@ -10,7 +10,7 @@ To Do: Clean up classes and method structure with getters and setters and reasse
 
 Bonus To Do: fully implement a GUI for the system with real time data display, event logging and marking, and alarm management.
  
-Structure:
+# Structure:
 Program.cs: Main program loop, handles sensor data collection, file output, and alarm checking.
 
 DewPointCalculator.cs: Static class for calculating dew point based on temperature and humidity.
@@ -18,5 +18,5 @@ OutputToFile.cs: Static class for handling file output, including creating new f
 Pause.cs: Static class for handling program pauses, possibly obsolete. Only necessary when reunning consoleapp and need to exit gracefully. May be removed in favor of a more robust solution for handling program termination and restarts with GUI.
 Alert.cs: Static class for handling alert conditions and triggering alerts when thresholds are exceeded.
 
-TO BE OBSOLETED
+# TO BE OBSOLETED
 FetchWeather.cs: Static class for fetching weather data from an online API, used for comparison and alerting.
