@@ -12,6 +12,8 @@
     <Compile Remove="FetchFile.cs" />
     <Compile Remove="FetchWeather.cs" />
     <Compile Remove="GetJson.cs" />
+    <Compile Remove="OutputToFile.cs" />
+    <Compile Remove="Pause.cs" />
   </ItemGroup>
 
   <ItemGroup>

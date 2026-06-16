@@ -1,11 +1,13 @@
 # SensorAPI
+Release version 0.2.0 - Finished basic application and deployed to production ennviornment. 
 
-# PROJECT REVISION: 0.1.0
+
+# PROJECT REVISION: 0.2.0
 Current data logger does not allow any API access, but an exposed sensor1.wdf file contains the data required for this project.
 API features will be added in future revisions, but for now the data can be accessed by reading the wdf file directly.
 	1. Obesoleting FetchWeather.cs and GetJSON.cs for now.
 	2. Adding FetchData.cs for reading the wdf file and parsing the data into usable formats for the excel.
-	
+	3. obsoleted all classes except dewpointcalculator. New program.cs needs refactoring in the future.
 
 # Generic API for Wifi capable sensors.
 Built in Alert system for critical temp, humidity, and dew point.

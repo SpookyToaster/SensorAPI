@@ -46,9 +46,10 @@ namespace SensorAPI
                     //==============================================================
 
                     List<string> fileOutput = new List<string>();
+                    fileOutput.Add("Time,Temp,Humidity,DewPoint");
 
                     //==============================================================
-                    // Loop through each line, delimit it into a parrallel array, perform calc for dew point, then compile into a single line array for export into csv.
+                    // split incoming data so calculations and re-formatting can be completed.
                     //==============================================================
 
                     foreach (var line in logOutput) //skipped header
@@ -57,41 +58,73 @@ namespace SensorAPI
                         string[] columns = line.Split(',');
 
                         string time = columns[0];
-                        string tempC = columns[1];
-                        string humidity = columns[2];
 
+                        if (!double.TryParse(columns[1], out double tempC)
 
-                        DewPointCalc dewPointCalc = new DewPointCalc(Convert.ToDouble(tempC), Convert.ToDouble(humidity));
+                            ||
 
-                        double dewPoint = dewPointCalc.DewPointCalculator(Convert.ToDouble(tempC), Convert.ToDouble(humidity));
+                            !double.TryParse(columns[2], out double humidity))
+                        {
+                            continue; // skip bad rows (headers, corrupt lines)
+                        }
 
+                        //calc dew point
 
-                        string newLine = 
+                        DewPointCalc dewPointCalc = new DewPointCalc(tempC, humidity);
+                        double dewPoint = dewPointCalc.DewPointCalculator(tempC, humidity);
+
+                        //rebuild string for file export
+
+                        string newLine =
                             string.Join
                             (",", new string[]
                                 {
                                     time,
-                                    tempC,
-                                    humidity,
-                                    dewPoint.ToString(),
+                                    tempC.ToString("F1", CultureInfo.InvariantCulture),
+                                    humidity.ToString("F0", CultureInfo.InvariantCulture),
+                                    dewPoint.ToString("F2", CultureInfo.InvariantCulture),
                                 }
                             );
+
+
+                        // assign string to fileoutput variable
                         fileOutput.Add(newLine);
-                        
+
                     }
 
+                    bool fileCheck = File.Exists(FilePathOutput);
 
-                    var existing = File.Exists(FilePathOutput)
+                    // check for duplicate values and skip if duplicate
+
+                    var existingFile = File.Exists(FilePathOutput)
                         ? new HashSet<string>(File.ReadAllLines(FilePathOutput))
                         : new HashSet<string>();
 
-                    foreach (var line in fileOutput.Skip(1))
+
+                    // check if file exists to skip header print.
+                    // For some reason won't refill missing rows. example: if row deleted, re-running does not refill. Hash issue?
+
+                    if (fileCheck)
                     {
-                        if (!existing.Contains(line))
+                        foreach (var line in fileOutput.Skip(1))
                         {
-                            File.AppendAllText(FilePathOutput, line + Environment.NewLine);
+                            if (!fileCheck || !existingFile.Contains(line))
+                            {
+                                File.AppendAllText(FilePathOutput, line + Environment.NewLine);
+                            }
                         }
                     }
+                    else
+                    {
+                        foreach (var line in fileOutput)
+                        {
+                            if (!fileCheck || !existingFile.Contains(line))
+                            {
+                                File.AppendAllText(FilePathOutput, line + Environment.NewLine);
+                            }
+                        }
+                    }
+                    
 
                 }
                 ;
