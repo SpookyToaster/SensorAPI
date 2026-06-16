@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Alert.cs" />
+    <Compile Remove="FetchFile.cs" />
+    <Compile Remove="FetchWeather.cs" />
+    <Compile Remove="GetJson.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.105.0" />
   </ItemGroup>
 

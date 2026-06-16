@@ -15,19 +15,19 @@ namespace SensorAPI
             //alert should be delivered via sms and email as available
             //use SPC controls based on 2 sigma standard deviation.
 
-            if ()
-            {
-                switch (message)
-                {
-                    case temp
-                    case humidity
-                    case DewPoint
-                    case 
-                }
+            //if ()
+            //{
+            //    switch (message)
+            //    {
+            //        case temp
+            //        case humidity
+            //        case DewPoint
+            //        case 
+            //    }
                     
-            }
+            //}
 
-            return response;
+            //return response;
 
         }
 
