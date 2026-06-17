@@ -75,12 +75,18 @@ namespace SensorAPI
 
                         //rebuild string for file export
 
+                        // Convert TempC to TempF
+                        
+                        double tempF = tempC * 9 / 5 + 32;
+
+
+                        // recombine string for export
                         string newLine =
                             string.Join
                             (",", new string[]
                                 {
                                     time,
-                                    tempC.ToString("F1", CultureInfo.InvariantCulture),
+                                    tempF.ToString("F1", CultureInfo.InvariantCulture),
                                     humidity.ToString("F0", CultureInfo.InvariantCulture),
                                     dewPoint.ToString("F2", CultureInfo.InvariantCulture),
                                 }
@@ -92,6 +98,8 @@ namespace SensorAPI
 
                     }
 
+
+                    //check for an existing file
                     bool fileCheck = File.Exists(FilePathOutput);
 
                     // check for duplicate values and skip if duplicate
