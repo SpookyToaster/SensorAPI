@@ -46,13 +46,15 @@ namespace SensorAPI
                     //==============================================================
 
                     List<string> fileOutput = new List<string>();
+
+                    //Add header into file
                     fileOutput.Add("Time,Temp,Humidity,DewPoint");
 
                     //==============================================================
                     // split incoming data so calculations and re-formatting can be completed.
                     //==============================================================
 
-                    foreach (var line in logOutput) //skipped header
+                    foreach (var line in logOutput)
                     {
 
                         string[] columns = line.Split(',');
@@ -95,6 +97,8 @@ namespace SensorAPI
                     bool fileCheck = File.Exists(FilePathOutput);
 
                     // check for duplicate values and skip if duplicate
+                    // unsure if this actually works??
+                    // Need to learn and test Hashset myself. 
 
                     var existingFile = File.Exists(FilePathOutput)
                         ? new HashSet<string>(File.ReadAllLines(FilePathOutput))
